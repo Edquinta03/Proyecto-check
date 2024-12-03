@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('../templaces/head') %>
+
+<body style="background-color: #fafafa;">
+
+    <%- include('../templaces/header') %>
+
+    <div class="container my-5">
+        <div class="form-container">
+            <h3>Registro de Carrera</h3><br>
+            <% if (typeof mensaje !== "undefined") { %>
+                <div class="alert alert-danger"><%= mensaje %></div>
+            <% } %>
+            <form id="registroForm" action="/validar" method="post">
+            <input type="hidden" name="formType" value="RegistroCarrera">
+            
+                <div class="mb-3">
+                    <label for="id_carrera" class="form-label">ID</label>
+                    <input type="number" class="form-control" name="id_carrera" id="id_carrera" placeholder="ID" required>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="nombres" class="form-label">Nombre de Carrera</label>
+                        <input type="text" class="form-control" name="nombre_carrera" id="nombre_carrera" placeholder="Ingrese nombre" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="apellidos" class="form-label">Facultad</label>
+                        <select class="form-control" name="facultad_id" id="facultad_id" required>
+                            <option value="" disabled selected>Seleccione la facultad</option>
+                            <% facultad.forEach(registro=>{%>
+                                <option value=" <%= registro.id_facultad %> "> <%= registro.nombre %> </option>
+                            <%  }) %>
+                        </select>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <button onclick="return confirma()" type="submit" class="btn btn-primary">Registrar</button>
+                    <a href="/carrera" class="btn btn-secondary ms-2">Cancelar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <%- include('../templaces/footer') %>
+    <script>
+        function confirma() {
+            const form = document.getElementById("registroForm");
+            if (form.checkValidity()) {
+                Swal.fire("Registro exitoso!","", "success");
+            } 
+        }
+    </script>
+</body>
+</html>

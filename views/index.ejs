@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<%- include('./pages/templaces/head') %>
+
+<body>
+
+<%- include('./pages/templaces/header') %>
+
+<div class="content p-4" style="margin-left: 250px;">
+  <div class="container my-5">
+    <div class="form-container">
+        <h3>Registro de Entrada y Salida.</h3><br>
+
+    <% if (typeof mensaje !== "undefined") { %>
+        <div class="alert alert-success"><%= mensaje %></div>
+    <% } %>  
+
+        <form action="/validar" method="post">
+        <input type="hidden" name="formType" value="Registro-Entrada-Salida">
+
+            <div class="col-mb-3">
+                <!-- <label for="id_registro" class="form-label">ID</label> -->
+                <input type="number" class="form-control" id="id_registro" placeholder="ID registro" hidden>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="usuario_id" class="form-label">Usuario</label>
+                    <input type="number" class="form-control" id="usuario_id" name="usuario_id" placeholder="usuario_id">
+                </div>
+            </div>
+          <button type="submit" class="btn btn-primary w-100">Registrar</button>
+        </form>
+    </div>
+</div>
+</div>
+
+<%- include('./pages/templaces/footer') %>
+
+<!-- <script src="../Public/templaces/templace.js"></script>     esto solo sirve para .js--> 
+
+</body>
+</html>

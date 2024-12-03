@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+
+    <%- include('../templaces/head') %>
+
+    <body>
+        
+        <%- include('../templaces/header') %>
+
+        <% if (carrera) { %>
+        <div class="container my-5">
+            <div class="form-container">
+                <h2>Actualizar Carrera</h2>
+                <form id="registroForm" action="/actualizar" method="post">
+                    <input type="hidden" name="formType" value="actualizarCarrera">
+    
+                    <!-- Campo de matrícula -->
+                    <div class="mb-3">
+                        <label for="id_carrera" class="form-label">Id</label>
+                        <input type="number" class="form-control" name="id_carrera" id="id_carrera" value="<%= carrera.id_carrera %>" required readonly>
+                    </div>
+    
+                    <!-- Campos para nombres -->
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="nombre_carrera" class="form-label">Nombres</label>
+                            <input type="text" class="form-control" name="nombre_carrera" id="nombre_carrera" value="<%= carrera.nombre_carrera %>" required>
+                        </div>
+                    </div>
+                    <!-- Selección de facultad -->
+                    <div class="mb-3">
+                        <label for="facultad_id" class="form-label">Facultad</label>
+                        <select class="form-control" name="facultad_id" id="facultad_id" required>
+                            <option value="" disabled selected>Seleccione la facultad</option>
+                            <% facultad.forEach(registro=>{%>
+                            <option <%= registro.nombre == facu ? "selected" : "" %> value="<%= registro.id_facultad %>"><%= registro.nombre %></option>
+                            <% }) %>
+                        </select>
+                    </div>
+            <div class="d-flex justify-content-center">
+                <button onclick="return confirma()" type="submit" class="btn btn-primary">Actualizar</button>
+                <a href="/carrera" class="btn btn-secondary ms-2">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</div>
+    <% } %>
+
+    <%- include('../templaces/footer') %>
+
+    <script>
+        function confirma() {
+            const form = document.getElementById("registroForm");
+            if (form.checkValidity()) {
+                Swal.fire("Registro actualizado!","", "success");
+            } 
+        }
+    </script>
+    
+    </body>
+
+</html>
+

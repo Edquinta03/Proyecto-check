@@ -1,0 +1,55 @@
+/* formularios */
+.form-container {
+    max-width: 600px;
+    margin: auto;
+    padding: 2rem;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.align-right-container {
+    display: flex;
+    justify-content: flex-end;
+    max-width: 800px;
+    margin-left: auto;
+  }
+/* menu lateral */
+.cuerpo {
+  display: flex;
+  padding-left: 200px; /* Este padding se aplica solo en pantallas grandes */
+}
+
+.sidebar {
+  min-width: 200px;
+  max-width: 200px;
+  color: #fff;
+  height: 100vh;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+@media (max-width: 768px) {
+  .cuerpo {
+    padding-left: 0;  
+  }
+} 
+
+  .footer {
+      color: #fff;
+      width: 100%;
+      height: 65px;
+      position: fixed;
+      bottom: 0;
+    }
+/* ajuste de las tablas */
+
+@media (min-width: 900px) and (max-width: 1440px) {
+  .container {
+    max-width: 850px;
+    margin-right: 180px;
+  }
+}
+

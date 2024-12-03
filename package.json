@@ -1,0 +1,22 @@
+{
+  "name": "proyecto-check",
+  "version": "1.0.0",
+  "description": "## Introducción",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "node app.js"
+  },
+  "keywords": [],
+  "author": "Eduardo-Quintana&Gustavo-Ham",
+  "license": "ISC",
+  "dependencies": {
+    "better-sqlite3": "^11.3.0",
+    "bootstrap-icons": "^1.11.3",
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.10",
+    "express": "^4.21.1",
+    "path": "^0.12.7",
+    "sweetalert2": "^11.6.13"
+  }
+}

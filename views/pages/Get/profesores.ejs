@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+  <%- include('../templaces/head') %>
+  <body>
+    <%- include('../templaces/header') %>
+
+    <div class="container">
+      <br></br>
+      <div class="contenedor-tabla">
+        <h3>Registro de los profesores.</h3>
+          <a class=" <%= rutaActual === '/RegistroAlumno' ? 'active' : '' %> btn btn-primary" 
+            href="/RegistroProfesor"><i class="bi bi-person-plus-fill"></i></a> 
+            
+          <table id="tabla" class="table table-bordered table-striped text-center mt-4">
+            <thead class="table-dark">
+              <tr>
+                <th>Id</th>
+                <th>Nombres</th>
+                <th>Apellidos</th>
+                <th>Status</th>
+                <th>Facultad</th>
+                <th>Acción</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% profesores.forEach(registro => { %>
+              <tr>
+                <td><%= registro.id_profesor %></td>
+                <td><%= registro.nombres %></td>
+                <td><%= registro.apellidos %></td>
+                <td><%= registro.status %></td>           <!-- Acceso al status -->
+                <td><%= registro.facultad_nombre %></td> <!-- Acceso al nombre de la facultad -->
+                <td>
+                  <a class="<%= rutaActual === '/actualizarProfesor' ? 'active' : '' %> btn btn-warning" href="/actualizarProfesor/<%= registro.id_profesor %>" role="button"><i class="bi bi-pencil-square"></i></a>
+                  <a class="btn btn-danger" onclick="return confirm('<%= registro.id_profesor %>')" role="button"><i class="bi bi-trash3"></i></a>
+                </td>
+              </tr>
+              <% }); %> 
+            </tbody>
+          </table>
+        </div>
+    </div>
+    <%- include('../templaces/footer') %>
+ 
+    <script>
+      function confirm(id){
+        Swal.fire({
+          title: "¿Estas seguro de que quieres eliminar el registro?",
+          showCancelButton: true,
+          confirmButtonText: "Confirmar",
+          icon: 'warning'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            Swal.fire("Borrado!", "", "success");
+            window.location = '/deleteP/'+id;
+          }
+        });
+    }
+    </script>
+
+  </body>
+</html>

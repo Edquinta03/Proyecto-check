@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+  <%- include('../templaces/head') %>
+  <body>
+    <%- include('../templaces/header') %>
+    <div class="container">
+      <div class="contenedor-tabla">
+          <br></br>
+          <h3>Registro de las carreras.</h3>
+          <a class=" <%= rutaActual === '/RegistroCarrera' ? 'active' : '' %> btn btn-primary" 
+            href="/RegistroCarrera"><i class="bi bi-person-plus-fill"></i></a>
+
+          <table id="tabla" class="table table-bordered table-striped text-center mt-4">
+            <thead class="table-dark">
+              <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Facultad</th>
+                <th>Acción</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% carreras.forEach(registro => { %>
+              <tr>
+                <td><%= registro.id_carrera %></td>
+                <td><%= registro.nombre_carrera %></td>
+                <td><%= registro.facultad_nombre %></td> <!-- Acceso al nombre de la facultad -->
+                <td>
+                  <a class="<%= rutaActual === '/actualizarCarrera' ? 'active' : '' %> btn btn-warning" href="/actualizarCarrera/<%= registro.id_carrera %>" role="button"><i class="bi bi-pencil-square"></i></a>
+                  <a class="btn btn-danger" onclick="return confirm('<%= registro.id_carrera %>')" role="button"><i class="bi bi-trash3"></i></a>
+                </td>
+              </tr>
+              <% }); %> 
+            </tbody>
+          </table>
+        </div>
+    </div>
+    <%- include('../templaces/footer') %>
+
+    <script>
+      function confirm(id){
+        Swal.fire({
+          title: "¿Estas seguro de que quieres eliminar el registro?",
+          showCancelButton: true,
+          confirmButtonText: "Confirmar",
+          icon: 'warning'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            Swal.fire("Borrado!", "", "success");
+            window.location = '/deleteC/'+id;
+          }
+        });
+    }
+    </script>
+
+  </body>
+</html>

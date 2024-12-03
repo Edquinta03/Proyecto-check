@@ -1,0 +1,89 @@
+<footer class="footer bg-dark text-white">
+
+  <div class="container">
+      <div class="row">
+      
+      <hr class="bg-light">
+      <div class="text-center">
+        <p class="mb-0">&copy; 2024 Universidad Autónoma del Carmen. Todos los derechos reservados.</p>
+      </div>
+        
+      </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap5.min.js"></script>  
+  <script src="DataTables/datatables.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    $(document).ready(function () {
+        $('#tabla').DataTable({
+          language: {
+                processing: "Procesando...",
+                search: "Buscar:",
+                lengthMenu: "Mostrar _MENU_ registros",
+                info: "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                infoEmpty: "Mostrando registros del 0 al 0 de un total de 0 registros",
+                infoFiltered: "(filtrado de un total de _MAX_ registros)",
+                loadingRecords: "Cargando...",
+                zeroRecords: "No se encontraron resultados",
+                emptyTable: "Ningún dato disponible en esta tabla",
+                paginate: {
+                    first: "Primero",
+                    previous: "Anterior",
+                    next: "Siguiente",
+                    last: "Último"
+                },
+                aria: {
+                    sortAscending: ": Activar para ordenar la columna de manera ascendente",
+                    sortDescending: ": Activar para ordenar la columna de manera descendente"
+                },
+                buttons: {
+                    copyTitle: "Copiado al portapapeles",
+                    copySuccess: {
+                        _: "Copiados %d registros",
+                        1: "Copiado 1 registro"
+                    }
+                }
+            },
+          responsive: "true",
+          dom: 'Bfrtilp',
+          buttons:[
+            {
+              extend: 'excelHtml5',
+              text: '<i class="bi bi-file-earmark-excel"></i>',
+              titleAttr: 'Exportar a Excel',
+              className: 'btn btn-success'
+            },
+            {
+              extend: 'pdfHtml5',
+              text: '<i class="bi bi-file-pdf"></i>',
+              titleAttr: 'Exportar a Pdf',
+              className: 'btn btn-danger'
+            },
+            {
+              extend: 'print',
+              text: '<i class="bi bi-printer"></i>',
+              titleAttr: 'Imprimir',
+              className: 'btn btn-info'
+            },
+          ],
+          lengthMenu:[5,10,30,100],
+          initComplete: function() {
+                // Mover los botones a la derecha del campo de búsqueda
+                $(".dataTables_filter").css("float", "left");
+                $(".dt-buttons").css("float", "right"); 
+                $(".dt-buttons button").css("border-radius", "5px");
+                $(".dt-buttons button").css("margin-left", "5px");
+                $(".dt-buttons button").css("margin-bottom", "5px");
+            }
+        });
+    });
+
+</script>
+
+</footer>

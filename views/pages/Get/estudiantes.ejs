@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+  <%- include('../templaces/head') %>
+  <body>
+    <%- include('../templaces/header') %>
+    
+    <div class="container my-5" >
+      <div class="contenedor-tabla">
+        <br></br>
+        <h3>Registro de los alumnos.</h3>
+          <a class=" <%= rutaActual === '/RegistroAlumno' ? 'active' : '' %> btn btn-primary" 
+            href="/RegistroAlumno"><i class="bi bi-person-plus-fill"></i></a> 
+            
+          <table id="tabla" class="table table-bordered table-striped text-center mt-4">
+            <thead class="table-dark">
+              <tr>
+                <th>Matricula</th>
+                <th>Nombres</th>
+                <th>Apellidos</th>
+                <th>Facultad</th>
+                <th>Carrera</th>
+                <th>Status</th>
+                <th>Acción</th>
+              </tr>
+            </thead>
+            <tbody>
+            <% estudiantes.forEach(registro => { %>
+              <tr>
+                <td><%= registro.id_alumno %></td>
+                <td><%= registro.nombres %></td>
+                <td><%= registro.apellidos %></td>
+                <td><%= registro.facultad_nombre %></td> <!-- Acceso al nombre de la facultad -->
+                <td><%= registro.nombre_carrera %></td>   <!-- Acceso al nombre de la carrera -->
+                <td><%= registro.status %></td>           <!-- Acceso al status -->
+                <td>
+                  <!-- botton modificar registro -->
+                  <a class=" <%= rutaActual === '/actualizarAlumno' ? 'active' : '' %> btn btn-warning" href="/actualizarAlumno/<%= registro.id_alumno %>" role="button"><i class="bi bi-pencil-square"></i></a>
+                  <!-- botton borrar registro -->
+                  <a class="btn btn-danger" onclick="return confirm('<%= registro.id_alumno %>')" role="button"><i class="bi bi-trash3"></i></a>
+                </td>
+              </tr>
+            <% }); %> 
+          </tbody>
+        </table>
+        </div>
+    </div>
+  
+    <script>
+      function confirm(id){
+         Swal.fire({
+          title: "¿Estas seguro de que quieres eliminar el registro?",
+          showCancelButton: true,
+          confirmButtonText: "Confirmar",
+          icon: 'warning'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            Swal.fire("Borrador!", "", "success");
+            window.location = '/deleteA/'+id;
+          }
+        });
+    }
+    </script>
+
+  <%- include('../templaces/footer') %>
+
+      </body>
+      </html>
+      

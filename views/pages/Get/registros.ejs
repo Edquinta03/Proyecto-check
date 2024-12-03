@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+  <%- include('../templaces/head') %>
+  <body>
+    <%- include('../templaces/header') %>
+    <div class="container">
+      <div class="contenedor-tabla">
+            <br></br>
+            <h3>Registro de entradas y salidas.</h3>
+          <table id="tabla" class="table table-bordered table-striped text-center mt-4">
+            <thead class="table-dark">
+              <tr>
+                <th>Id</th>
+                <th>Usuario_id</th>
+                <th>Fecha de entrada</th>
+                <th>Fecha de salida</th>
+                <!-- <th>Acción</th> -->
+              </tr>
+            </thead>
+            <tbody>
+              <% registros.forEach(registro => { %>
+              <tr>
+                <td><%= registro.id_registro %></td>
+                <td><%= registro.usuario_id %></td>
+                <td><%= registro.fecha_entrada %></td> 
+                <td><%= registro.fecha_salida %></td>
+                <!-- <td>
+                  <a class="<%= rutaActual === '/actualizarCarrera' ? 'active' : '' %> btn btn-warning" href="/actualizarCarrera/<%= registro.id_registro %>" role="button"><i class="bi bi-pencil-square"></i></a>
+                  <a class="btn btn-danger" href="/deleteC/<%= registro.id_registro %>" role="button"><i class="bi bi-trash3"></i></a>
+                </td> -->
+              </tr>
+              <% }); %> 
+            </tbody>
+          </table>
+        </div>
+    </div>
+    <%- include('../templaces/footer') %>
+
+  </body>
+</html>

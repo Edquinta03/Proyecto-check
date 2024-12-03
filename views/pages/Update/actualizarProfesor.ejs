@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+
+    <%- include('../templaces/head') %>
+
+    <body>
+        
+        <%- include('../templaces/header') %>
+
+        <!-- Contenedor para el formulario de registro de alumno -->
+
+        <% if (profesor) { %>
+        <div class="container my-5">
+            <div class="form-container">
+                <h2>Actualizar Profesor</h2>
+                <form id="registroForm" action="/actualizar" method="post">
+                    <input type="hidden" name="formType" value="actualizarProfesor">
+    
+                    <!-- Campo de matrícula -->
+                    <div class="mb-3">
+                        <label for="id_profesor" class="form-label">Id</label>
+                        <input type="number" class="form-control" name="id_profesor" id="id_profesor" value="<%= profesor.id_profesor %>" required readonly>
+                    </div>
+    
+                    <!-- Campos para nombres y apellidos -->
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="nombres" class="form-label">Nombres</label>
+                            <input type="text" class="form-control" name="nombres" id="nombres" value="<%= profesor.nombres %>" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="apellidos" class="form-label">Apellidos</label>
+                            <input type="text" class="form-control" name="apellidos" id="apellidos" value="<%= profesor.apellidos %>" required>
+                        </div>
+                    </div>
+    
+                    <!-- Selección de facultad -->
+                    <div class="mb-3">
+                        <label for="facultad_id" class="form-label">Facultad</label>
+                        <select class="form-control" name="facultad_id" id="facultad_id" required>
+                            <option value="" disabled selected>Seleccione la facultad</option>
+                            <% facultad.forEach(registro=>{%>
+                            <option <%= registro.nombre == facu ? "selected" : "" %> value="<%= registro.id_facultad %>"><%= registro.nombre %></option>
+                            <% }) %>
+                        </select>
+                    </div>
+    
+                    <!-- Selección de status -->
+                    <div class="mb-3">
+                        <label for="status_id" class="form-label">Status</label>
+                        <select class="form-control" name="status_id" id="status_id" required>
+                            <option value="" disabled selected>Seleccione el status</option>
+                            <% status.forEach(registro =>{%>
+                            <option <%= registro.status == statu ? "selected" : "" %> value="<%= registro.id_status %>"><%= registro.status %></option>
+                            <%  }) %>
+                        </select>
+                    </div>
+    
+            <div class="d-flex justify-content-center">
+                <button onclick="return confirma()" type="submit" class="btn btn-primary">Actualizar</button>
+                <a href="/profesores" class="btn btn-secondary ms-2">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+    <% } %>
+        <%- include('../templaces/footer') %>
+
+        <script>
+            function confirma() {
+                const form = document.getElementById("registroForm");
+                if (form.checkValidity()) {
+                    Swal.fire("Registro actualizado!","", "success");
+                } 
+            }
+        </script>
+    </body>
+
+</html>
+
