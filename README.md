@@ -28,16 +28,6 @@ El sistema implementa un proceso de autenticación que requiere que los usuarios
 
 En el proyecto, se utiliza una base de datos como SQLite para almacenar la información de los usuarios y sus registros de asistencia. Node.js se conecta a esta base de datos mediante un ORM (Object-Relational Mapping) o un cliente de base de datos, lo que permite realizar operaciones de creación, lectura, actualización y eliminación (CRUD) de manera eficiente. Esto asegura que la información esté organizada y sea fácilmente accesible cuando se necesite.
 
-
-## Installation
-
-Install proyecto-check with npm
-
-```bash
-  npm install 
-  cd proyecto-check
-```
-    
 ## Run Locally
 
 Go to the project directory
